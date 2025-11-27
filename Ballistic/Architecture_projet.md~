@@ -1,0 +1,24 @@
+# Architecture du projet "Ballistic"
+
+* Le dossier principal contient les fichiers **notebook** nécessaires
+pour mener le projet dans ces différentes phases
+* Le dossier **Ballistic** contient tous les fichiers contenant les classes du projet.
+* Le nom du fichier contenant une classe est celui de la classe en lettres minuscules.
+* Chaque classe est testé dans un fichier principal dont le nom démarre par **main**
+* Les noms sont fixés, et identiques pour tous.
+* Il suffit donc de remplir les fichiers ou les parties manquantes.
+* Les fichiers sont considérés comme des modules dans Jupyter notebook et peuvent donc 
+  être importés
+* Il est possible de ne travailler que dans jupyter notebook mais c'est déconseillé: 
+  il vaut mieux utiliser un éditeur Python.
+
+La décomposition proposée crée beaucoup de fichiers, l'avantage est qu'on peut 
+faire fonctionner les morceaux les uns indépendamment des autres, ce qui sera
+plus facile à corriger.
+
+Dans l'idéal, on pourrait réduire le nombre de classes et n'avoir qu'un ou deux
+fichiers **main**. Cela pourrait se faire après que tout ait déjà été implémenté correctement, et
+serait la phase ultime du projet.
+C'est ce que j'ai fait.
+
+Christophe Airiau
