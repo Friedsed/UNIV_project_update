@@ -29,8 +29,8 @@ class Model_1(object):
         self.t_1, self.h_1 = None, None
 
 
-    def initial_message():
-        set_title("Création d'une instance du modèle analytique (class initiation)")
+    #def initial_message():
+     #   set_title("Création d'une instance du modèle analytique (class initiation)")
 
     # SETTERS
 
