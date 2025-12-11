@@ -66,7 +66,7 @@ class Model_2(object):
        # y = odeint(lambda y, t: self.ode(y, t), y_init, self.t, full_output=False)
         self.x, self.z, self.v_x, self.v_z = y[:, 0], y[:, 1], y[:, 2], y[:, 3]
 
-    def plot_trajectory(self, t_end, alpha):
+    def plot_trajectory(self):
         """
         dessin de la trajectoire
         Ajout des étudiants
