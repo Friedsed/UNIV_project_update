@@ -26,10 +26,12 @@ class Model_3(object):
         self.v_x, self.v_z, self.v = None, None, None
         self.Cx, self.Cz = None, None
         self.impact_values = None
+        self.list1,self.list2,self.list3 = None,None,None
 
         self.T0 = self.a * self.mass * g
         self.beta = (self.rho * self.area) / (2 * self.mass)
         self.Ct = self.T0 / self.mass
+        
 
         
 
@@ -70,6 +72,8 @@ class Model_3(object):
         plt.legend(["Position Z en fonction de la position z "], fontsize=12)
         plt.show ()
         #print("Récupérer la méthode de la partie 1 et la recopier")
+
+    
 
 
 
@@ -122,17 +126,43 @@ class Model_3(object):
         return x, z
 
     def set_impact_values(self):
-      
+
         def interpo(a, n, u):
+            # interpolation linéaire entre u[n] et u[n+1]
             return u[n] + a * (u[n + 1] - u[n])
 
+        # on cherche le premier passage de z de >0 à <=0
         n = 0
-        
-        # partie à coder
-        
-        # résultat à conserver:
-        self.impact_values = {"t_i": t_i, "p": x_i, "angle": np.rad2deg(theta_i), "v": [v_x, v_z, v]}
+        for i in range(len(self.z) - 1):
+            if self.z[i] > 0 and self.z[i + 1] <= 0:
+                n = i
+                break
+
+        # paramètre d'interpolation a tel que z_i = 0
+        a = - self.z[n] / (self.z[n + 1] - self.z[n])
+
+        # temps et position à l'impact
+        t_i = interpo(a, n, self.t)
+        x_i = interpo(a, n, self.x)
+        z_i = 0.0  # par définition de l’impact
+
+        # vitesses à l'impact
+        v_x = interpo(a, n, self.v_x)
+        v_z = interpo(a, n, self.v_z)
+        v   = np.sqrt(v_x**2 + v_z**2)
+
+        # angle de la vitesse
+        theta_i = np.arctan2(v_z, v_x)
+
+        # résultat à conserver
+        self.impact_values = {
+            "t_i": t_i,
+            "p": x_i,
+            "angle": np.rad2deg(theta_i),
+            "v": [v_x, v_z, v],
+        }
         return self.impact_values
+
 
     def get_parameters(self):
         print("v_0        : %.2f m/s" % self.v_0)
